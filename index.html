@@ -1,0 +1,1147 @@
+<html><head><base href="." />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ContaExpert - Servicios de Contabilidad Profesional</title>
+
+<style>
+:root {
+  --primary: #2d3436;
+  --secondary: #636e72;
+  --accent: #00b894;
+  --light: #f5f6fa;
+}
+
+/* New Sections and Animations */
+.features {
+  padding: 5rem 2rem;
+  background: #2d3436;
+  color: white;
+}
+
+.features-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+.feature-item {
+  text-align: center;
+  padding: 2rem;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(5px);
+  transform: scale(0.9);
+  transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+  transform: scale(1);
+  background: rgba(255,255,255,0.2);
+}
+
+.testimonials {
+  padding: 5rem 2rem;
+  background: var(--light);
+}
+
+.testimonial-slider {
+  max-width: 800px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.testimonial-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.testimonial-card {
+  min-width: 100%;
+  padding: 2rem;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.testimonial-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 2rem;
+}
+
+.contact-form {
+  max-width: 600px;
+  margin: 5rem auto;
+  padding: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid var(--secondary);
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  border-color: var(--accent);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0,184,148,0.2);
+}
+
+.floating-button {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--accent);
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transform: scale(0);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  text-decoration: none;
+}
+
+.floating-button.visible {
+  transform: scale(1);
+}
+
+.floating-button:hover {
+  transform: scale(1.1);
+  background: #00a885;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: var(--light);
+}
+
+/* Navbar Styles */
+.navbar {
+  background: var(--primary);
+  padding: 1rem 2rem;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+  padding: 0.5rem 2rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.logo svg {
+  margin-right: 10px;
+  animation: rotate 20s linear infinite;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--secondary);
+}
+
+/* Add to the existing CSS */
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.nav-links.active {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--primary);
+    flex-direction: column;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 1rem;
+  }
+}
+
+/* Hero Section */
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #2d3436, #636e72);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, 
+    rgba(20, 25, 27, 0.95) 0%,
+    rgba(65, 75, 78, 0.95) 25%,
+    rgba(0, 144, 108, 0.4) 50%,
+    rgba(65, 75, 78, 0.95) 75%,
+    rgba(20, 25, 27, 0.95) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  z-index: 0;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.hero-content {
+  text-align: center;
+  color: white;
+  z-index: 1;
+  padding: 2rem;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1s forwards;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1s 0.5s forwards;
+}
+
+.cta-button {
+  padding: 1rem 2rem;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  animation: fadeInUp 1s 1s forwards;
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  background: #00a885;
+}
+
+/* Services Section */
+.services {
+  padding: 5rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.service-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  transform: translateY(30px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.service-card.visible {
+  animation: fadeInUp 1s forwards;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.service-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 1rem;
+  fill: var(--accent);
+}
+
+/* Team Section */
+.team-section {
+  padding: 5rem 2rem;
+  background: linear-gradient(135deg, #2d3436, #636e72);
+  color: white;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.team-card {
+  padding: 3rem;
+  max-width: 600px;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.1);
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
+  text-align: center;
+  transform: translateY(50px);
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.team-card.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.team-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+  background: var(--accent);
+  overflow: hidden;
+  position: relative;
+}
+
+/* FAQ Section */
+.faq-section {
+  padding: 5rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.faq-question {
+  background: var(--primary);
+  color: white;
+  padding: 1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-answer {
+  background: white;
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.faq-item.active .faq-answer {
+  padding: 1rem;
+  max-height: 300px;
+}
+
+/* News Section */
+.news-section {
+  padding: 5rem 2rem;
+  background: var(--light);
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.news-card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.news-card:hover {
+  transform: translateY(-10px);
+}
+
+.news-content {
+  padding: 1.5rem;
+}
+
+.news-date {
+  color: var(--secondary);
+  font-size: 0.9rem;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Footer Styles */
+.footer {
+  background: var(--primary);
+  color: white;
+  padding: 4rem 2rem 2rem;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.footer-column {
+  padding: 1rem;
+}
+
+.footer-column h3 {
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 0.8rem;
+}
+
+.footer-links a {
+  color: #ddd;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+.footer-social {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  background: var(--accent);
+  transform: translateY(-3px);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 2rem;
+  margin-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero p {
+    font-size: 1rem;
+  }
+}
+
+.team-title {
+  color: var(--accent);
+  margin: 0.5rem 0;
+  font-weight: 600;
+}
+
+.team-quote {
+  font-style: italic;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border-left: 3px solid var(--accent);
+  background: rgba(255,255,255,0.05);
+}
+
+.specialties {
+  text-align: left;
+  margin-top: 1.5rem;
+}
+
+.specialties h4 {
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.specialties ul {
+  list-style: none;
+  padding: 0;
+}
+
+.specialties li {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.specialties li:before {
+  content: "•";
+  color: var(--accent);
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+.particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: rgba(0, 0, 0, 0.25); /* Increased opacity from 0.15 to 0.25 */
+  border-radius: 50%;
+  animation: float 20s infinite linear;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+</style>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="nav-content">
+      <a href="https://contaexpert.com" class="logo">
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M21,18H24V16H21V18M1,18H4V16H1V18M7,18H10V16H7V18M11,18H14V16H11V18M15,18H18V16H15V18M17.5,13C15,13 13,15 13,17.5C13,20 15,22 17.5,22C20,22 22,20 22,17.5C22,15 20,13 17.5,13M17.5,20.5C15.84,20.5 14.5,19.16 14.5,17.5C14.5,15.84 15.84,14.5 17.5,14.5C19.16,14.5 20.5,15.84 20.5,17.5C20.5,19.16 19.16,20.5 17.5,20.5M17,2V5H19V7H17V10H15V7H13V5H15V2H17Z"/>
+        </svg>
+        ContaExpert
+      </a>
+      <button class="mobile-menu-btn">
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"/>
+        </svg>
+      </button>
+      <div class="nav-links">
+        <a href="#inicio">Inicio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Soluciones Contables Inteligentes</h1>
+      <p>Optimice su gestión financiera con nuestro equipo de expertos</p>
+      <button class="cta-button">Consulta Gratuita</button>
+    </div>
+  </section>
+
+  <section class="services" id="servicios">
+    <h2 class="section-title">Nuestros Servicios</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M4,4H20A2,2 0 0,1 22,6V18A2,2 0 0,1 20,20H4A2,2 0 0,1 2,18V6A2,2 0 0,1 4,4M4,6V18H20V6H4M6,8H18V10H6V8M6,12H16V14H6V12M6,16H14V18H6V16Z"/>
+        </svg>
+        <h3>Contabilidad Empresarial</h3>
+        <p>Gestión contable completa para su empresa</p>
+      </div>
+
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,5V19H5V5H19M7,7V9H17V7H7M7,11V13H17V11H7M7,15V17H14V15H7Z"/>
+        </svg>
+        <h3>Asesoría Fiscal</h3>
+        <p>Optimización de impuestos y cumplimiento normativo</p>
+      </div>
+
+      <div class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M21,18V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3H19A2,2 0 0,1 21,5V6H12C10.89,6 10,6.89 10,8V16A2,2 0 0,0 12,18M12,16V8H21V16"/>
+        </svg>
+        <h3>Nóminas y Personal</h3>
+        <p>Gestión integral de recursos humanos</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2 class="section-title">¿Por qué elegirnos?</h2>
+    <div class="features-grid">
+      <div class="feature-item">
+        <svg class="service-icon" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,17H13V11H11V17Z"/>
+        </svg>
+        <h3>Experiencia Comprobada</h3>
+        <p>Más de 5 años en el mercado</p>
+      </div>
+      <div class="feature-item">
+        <svg class="service-icon" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1Z"/>
+        </svg>
+        <h3>Seguridad Garantizada</h3>
+        <p>Protección total de sus datos</p>
+      </div>
+      <div class="feature-item">
+        <svg class="service-icon" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9A3,3 0 0,1 15,12Z"/>
+        </svg>
+        <h3>Soporte 24/7</h3>
+        <p>Siempre disponibles para ti</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+    <div class="testimonial-slider">
+      <div class="testimonial-track">
+        <div class="testimonial-card">
+          <div class="testimonial-avatar">M</div>
+          <h3>María González</h3>
+          <p>"Excelente servicio, muy profesionales y eficientes."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="team-section">
+    <h2 class="section-title">Nuestro Equipo</h2>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">
+          <svg viewBox="0 0 24 24" width="150" height="150">
+            <path fill="currentColor" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+          </svg>
+        </div>
+        <h3>Licda. [Nombre de la Contadora]</h3>
+        <p class="team-title">Socia Fundadora</p>
+        <blockquote class="team-quote">
+          "Asegurando decisiones financieras precisas y estratégicas para un crecimiento sostenible."
+        </blockquote>
+        <div class="specialties">
+          <h4>Áreas de Especialización:</h4>
+          <ul>
+            <li>Contabilidad general y financiera</li>
+            <li>Planificación y análisis financiero</li>
+            <li>Asesoría fiscal y tributaria</li>
+            <li>Auditoría interna y control de procesos</li>
+            <li>Gestión de costos y optimización de recursos</li>
+            <li>Implementación de sistemas de contabilidad digital</li>
+          </ul>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">
+          <svg viewBox="0 0 24 24" width="150" height="150">
+            <path fill="currentColor" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+          </svg>
+        </div>
+        <h3>Licda. </h3>
+        <p class="team-title">Socio Fundador</p>
+        <blockquote class="team-quote">
+          "Empoderandose para tomar decisiones personales y empresariales acertadas."
+        </blockquote>
+        <div class="specialties">
+          <h4>Áreas de Especialización:</h4>
+          <ul>
+            <li>Derecho administrativo, empresarial y comercial</li>
+            <li>Derecho migratorio</li>
+            <li>Asesoría a empresas multinacionales</li>
+            <li>Derecho inmobiliario - compra y venta de propiedades</li>
+            <li>Negocios rentables y escalabilidad digital</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-section">
+    <h2 class="section-title">Preguntas Frecuentes</h2>
+    <div class="faq-item">
+      <div class="faq-question">
+        ¿Qué servicios ofrecen?
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
+        </svg>
+      </div>
+      <div class="faq-answer">
+        <div style="padding: 1rem 0">
+          <h4 style="color: var(--accent); margin-bottom: 0.5rem">Contabilidad y Finanzas</h4>
+          <p style="margin-bottom: 1.5rem">Llevamos el registro completo de tus transacciones y generamos estados financieros detallados para que siempre tengas claridad sobre la salud financiera de tu negocio.</p>
+          
+          <h4 style="color: var(--accent); margin-bottom: 0.5rem">Asesoría Fiscal y Declaración de Impuestos</h4>
+          <p style="margin-bottom: 1.5rem">Te ayudamos a cumplir con tus obligaciones fiscales y optimizar tus impuestos, asegurando que aproveches todas las deducciones y beneficios disponibles.</p>
+          
+          <h4 style="color: var(--accent); margin-bottom: 0.5rem">Auditoría Financiera</h4>
+          <p>Realizamos auditorías exhaustivas para verificar la precisión de tus registros contables y garantizar el cumplimiento con las normativas vigentes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="news-section">
+    <h2 class="section-title">Últimas Noticias</h2>
+    <div class="news-grid">
+      <div class="news-card">
+        <div class="news-content">
+          <p class="news-date">Marzo 2024</p>
+          <h3>Actualización en el Código Tributario de República Dominicana</h3>
+          <p>Explora los cambios más recientes en el código tributario y cómo pueden afectar la gestión fiscal de las empresas.</p>
+        </div>
+      </div>
+      
+      <div class="news-card">
+        <div class="news-content">
+          <p class="news-date">Marzo 2024</p>
+          <h3>Nuevos Beneficios Fiscales para PYMEs en 2024</h3>
+          <p>Conoce las nuevas exenciones y beneficios fiscales que el gobierno ha lanzado para apoyar a las pequeñas y medianas empresas.</p>
+        </div>
+      </div>
+      
+      <div class="news-card">
+        <div class="news-content">
+          <p class="news-date">Marzo 2024</p>
+          <h3>Regulaciones para Facturación Electrónica</h3>
+          <p>Descubre todo lo que necesitas saber sobre la facturación electrónica en República Dominicana y cómo implementarla en tu negocio.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-form" id="contacto">
+    <h2 class="section-title">Contáctanos</h2>
+    <form>
+      <div class="form-group">
+        <input type="text" class="form-input" placeholder="Nombre completo" required>
+      </div>
+      <div class="form-group">
+        <input type="email" class="form-input" placeholder="Correo electrónico" required>
+      </div>
+      <div class="form-group">
+        <textarea class="form-input" placeholder="Mensaje" rows="5" required></textarea>
+      </div>
+      <button type="submit" class="cta-button">Enviar mensaje</button>
+    </form>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>ContaExpert</h3>
+        <p>Soluciones contables inteligentes para tu empresa. Más de 15 años de experiencia en el mercado.</p>
+        <div class="footer-social">
+          <a href="https://facebook.com" class="social-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24">
+              <path fill="currentColor" d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z"/>
+            </svg>
+          </a>
+          <a href="https://twitter.com" class="social-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24">
+              <path fill="currentColor" d="M22.46,6C21.69,6.35 20.86,6.58 20,6.69C20.88,6.16 21.56,5.32 21.88,4.31C21.05,4.81 20.13,5.16 19.16,5.36C18.37,4.5 17.26,4 16,4C13.65,4 11.73,5.92 11.73,8.29C11.73,8.63 11.77,8.96 11.84,9.27C8.28,9.09 5.11,7.38 3,4.79C2.63,5.42 2.42,6.16 2.42,6.94C2.42,8.43 3.17,9.75 4.33,10.5C3.62,10.5 2.96,10.3 2.38,10C2.38,10 2.38,10 2.38,10.03C2.38,12.11 3.86,13.85 5.82,14.24C5.46,14.34 5.08,14.39 4.69,14.39C4.42,14.39 4.15,14.36 3.89,14.31C4.43,16 6,17.26 7.89,17.29C6.43,18.45 4.58,19.13 2.56,19.13C2.22,19.13 1.88,19.11 1.54,19.07C3.44,20.29 5.7,21 8.12,21C16,21 20.33,14.46 20.33,8.79C20.33,8.6 20.33,8.42 20.32,8.23C21.16,7.63 21.88,6.87 22.46,6Z"/>
+            </svg>
+          </a>
+          <a href="https://linkedin.com" class="social-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24">
+              <path fill="currentColor" d="M19 3A2 2 0 0 1 21 5V19A2 2 0 0 1 19 21H5A2 2 0 0 1 3 19V5A2 2 0 0 1 5 3H19M18.5 18.5V13.2A3.26 3.26 0 0 0 15.24 9.94C14.39 9.94 13.4 10.46 12.92 11.24V10.13H10.13V18.5H12.92V13.57C12.92 12.8 13.54 12.17 14.31 12.17A1.4 1.4 0 0 1 15.71 13.57V18.5H18.5M6.88 8.56A1.68 1.68 0 0 0 8.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19A1.69 1.69 0 0 0 5.19 6.88C5.19 7.81 5.95 8.56 6.88 8.56M8.27 18.5V10.13H5.5V18.5H8.27Z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <h3>Enlaces Rápidos</h3>
+        <ul class="footer-links">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Servicios</h3>
+        <ul class="footer-links">
+          <li><a href="#">Contabilidad Empresarial</a></li>
+          <li><a href="#">Asesoría Fiscal</a></li>
+          <li><a href="#">Nóminas y Personal</a></li>
+          <li><a href="#">Consultoría Financiera</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Contacto</h3>
+        <ul class="footer-links">
+          <li>📍 AV LOS CORALES</li>
+          <li>📞 +1-829-747-2647</li>
+          <li>✉️ soporte@contaexpert.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 ContaExpert. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/01010101010101" class="floating-button" target="_blank" rel="noopener">
+    <svg width="24" height="24" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M8.53 7.33C8.37 7.33 8.1 7.39 7.87 7.64C7.65 7.89 7 8.5 7 9.71C7 10.93 7.89 12.1 8 12.27C8.14 12.44 9.76 14.94 12.25 16C12.84 16.27 13.3 16.42 13.66 16.53C14.25 16.72 14.79 16.69 15.22 16.63C15.7 16.56 16.68 16.03 16.89 15.45C17.1 14.87 17.1 14.38 17.04 14.27C16.97 14.17 16.81 14.11 16.56 14C16.31 13.86 15.09 13.26 14.87 13.18C14.64 13.1 14.5 13.06 14.31 13.3C14.15 13.55 13.67 14.11 13.53 14.27C13.38 14.44 13.24 14.46 13 14.34C12.74 14.21 11.94 13.95 11 13.11C10.26 12.45 9.77 11.64 9.62 11.39C9.5 11.15 9.61 11 9.73 10.89C9.84 10.78 10 10.6 10.1 10.45C10.23 10.31 10.27 10.2 10.35 10.04C10.43 9.87 10.39 9.73 10.33 9.61C10.27 9.5 9.77 8.26 9.56 7.77C9.36 7.29 9.16 7.35 9 7.34C8.86 7.34 8.7 7.33 8.53 7.33Z"/>
+    </svg>
+  </a>
+
+<script>
+// Navbar scroll effect
+window.addEventListener('scroll', () => {
+  const navbar = document.querySelector('.navbar');
+  if (window.scrollY > 50) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+});
+
+// Service cards animation on scroll
+const observerOptions = {
+  threshold: 0.2
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.service-card').forEach(card => {
+  observer.observe(card);
+});
+
+// Testimonial slider
+const testimonials = [
+  {name: "María González", text: "Excelente servicio, muy profesionales y eficientes."},
+  {name: "Juan Pérez", text: "Han transformado la gestión contable de mi empresa."},
+  {name: "Ana Martínez", text: "Increíble atención al cliente y resultados."}
+];
+
+let currentTestimonial = 0;
+const testimonialTrack = document.querySelector('.testimonial-track');
+
+function updateTestimonials() {
+  currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+  const testimonial = testimonials[currentTestimonial];
+  testimonialTrack.style.transform = 'translateX(-100%)';
+  
+  setTimeout(() => {
+    testimonialTrack.style.transition = 'none';
+    testimonialTrack.innerHTML = `
+      <div class="testimonial-card">
+        <div class="testimonial-avatar">${testimonial.name[0]}</div>
+        <h3>${testimonial.name}</h3>
+        <p>"${testimonial.text}"</p>
+      </div>
+    `;
+    testimonialTrack.style.transform = 'translateX(0)';
+    setTimeout(() => {
+      testimonialTrack.style.transition = 'transform 0.5s ease';
+    }, 50);
+  }, 500);
+}
+
+setInterval(updateTestimonials, 5000);
+
+// Team cards animation
+const teamCards = document.querySelectorAll('.team-card');
+const teamObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.2 });
+
+teamCards.forEach(card => teamObserver.observe(card));
+
+// FAQ accordion
+document.querySelectorAll('.faq-question').forEach(question => {
+  question.addEventListener('click', () => {
+    const item = question.parentElement;
+    document.querySelectorAll('.faq-item').forEach(otherItem => {
+      if (otherItem !== item) otherItem.classList.remove('active');
+    });
+    item.classList.toggle('active');
+  });
+});
+
+// Floating button
+const floatingButton = document.querySelector('.floating-button');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
+    floatingButton.classList.add('visible');
+  } else {
+    floatingButton.classList.remove('visible');
+  }
+});
+
+// Form animations
+const formInputs = document.querySelectorAll('.form-input');
+formInputs.forEach(input => {
+  input.addEventListener('focus', () => {
+    input.style.transform = 'scale(1.02)';
+  });
+  
+  input.addEventListener('blur', () => {
+    input.style.transform = 'scale(1)';
+  });
+});
+
+// Feature items animation
+const featureItems = document.querySelectorAll('.feature-item');
+const featureObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.animation = 'pulse 2s infinite';
+    } else {
+      entry.target.style.animation = 'none';
+    }
+  });
+}, { threshold: 0.5 });
+
+featureItems.forEach(item => {
+  featureObserver.observe(item);
+});
+
+// Button hover animation
+const ctaButton = document.querySelector('.cta-button');
+ctaButton.addEventListener('mouseover', () => {
+  ctaButton.style.transform = 'translateY(-3px)';
+});
+ctaButton.addEventListener('mouseout', () => {
+  ctaButton.style.transform = 'translateY(0)';
+});
+
+// Add to the existing JavaScript
+const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+const navLinks = document.querySelector('.nav-links');
+
+mobileMenuBtn.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+  if (!navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+    navLinks.classList.remove('active');
+  }
+});
+
+// Close menu when clicking a link
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('active');
+  });
+});
+
+// Create floating particles
+function createParticles() {
+  const particlesContainer = document.createElement('div');
+  particlesContainer.className = 'particles';
+  
+  for(let i = 0; i < 75; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.top = Math.random() * 100 + '%';
+    
+    const duration = 20 + Math.random() * 15;
+    const delay = Math.random() * -25;
+    particle.style.animation = `float ${duration}s ${delay}s infinite linear`;
+    
+    particlesContainer.appendChild(particle);
+  }
+  
+  const hero = document.querySelector('.hero');
+  hero.appendChild(particlesContainer);
+}
+
+// Call the function when the page loads
+document.addEventListener('DOMContentLoaded', createParticles);
+
+// Smooth scroll for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    document.querySelector(this.getAttribute('href')).scrollIntoView({
+      behavior: 'smooth'
+    });
+  });
+});
+</script>
+
+</body></html>
